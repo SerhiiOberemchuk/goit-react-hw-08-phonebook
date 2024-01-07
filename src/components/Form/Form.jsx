@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'store/operation';
-import { getContacts } from 'store/selectors';
+import { addContact } from 'store/contacts/operation';
+import { getContacts } from 'store/contacts/selectors';
 import swal from 'sweetalert';
 
 export const FormAddContacts = () => {
