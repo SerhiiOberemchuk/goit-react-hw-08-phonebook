@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'store/contacts/operation';
-import { getContacts } from 'store/contacts/selectors';
+import { getContacts, getIsLoading } from 'store/contacts/selectors';
+import Loader from 'react-js-loader';
+
 import swal from 'sweetalert';
 
 export const FormAddContacts = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const items = useSelector(getContacts);
+  const isLoading = useSelector(getIsLoading);
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -76,7 +79,17 @@ export const FormAddContacts = () => {
         />
       </div>
       <button type="submit" className="btn btn-primary">
-        Add contact
+        {/* {isLoading ? (
+          <Loader
+            type="spinner-cub"
+            bgColor={'#3367D1'}
+            title={'spinner-cub'}
+            size={20}
+          />
+        ) : (
+          <p className="m-0">Add contact</p>
+        )} */}
+        <p className="m-0">Add contact</p>
       </button>
     </form>
   );

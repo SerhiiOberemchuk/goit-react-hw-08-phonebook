@@ -6,9 +6,10 @@ import { logOut } from 'store/auth/operation';
 const UserMenu = () => {
   const { user } = useAuth();
   const dispatch = useDispatch();
+
   return (
     <div className="navbar-nav">
-      <p className="nav-link">Welcome {user.name}</p>
+      <p className="">Welcome {user.name.toUpperCase()}</p>
       <button
         className="btn btn-warning"
         type="button"

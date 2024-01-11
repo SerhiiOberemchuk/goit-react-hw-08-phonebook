@@ -1,12 +1,22 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { singUp } from 'store/auth/operation';
+import { registerError } from 'store/auth/selector';
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigate();
+  const isError = useSelector(registerError);
+  useEffect(() => {
+    if (!isError) {
+      return;
+    } else if (isError.keyValue && isError.keyValue.email) {
+      alert(`Email: ${isError.keyValue.email} already used`);
+    } else if (isError.message) {
+      alert(isError.message);
+    }
+  }, [isError]);
 
   const handleSabmit = e => {
     e.preventDefault();
@@ -15,13 +25,17 @@ const RegisterPage = () => {
       email: e.target.elements.email.value,
       password: e.target.elements.password.value,
     };
+
     dispatch(singUp(newUser));
+
     e.currentTarget.reset();
-    navigation('/login');
   };
 
   return (
     <div className="container mt-4 maine_box">
+      <Helmet>
+        <title>Registration</title>
+      </Helmet>
       <form onSubmit={handleSabmit}>
         <div className="mb-3">
           <label htmlFor="Username" className="form-label">
@@ -56,8 +70,8 @@ const RegisterPage = () => {
             type="text"
             className="form-control"
             id="InputPassword"
-            pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$"
-            minLength="10"
+            // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$"
+            // minLength="10"
             required
           />
         </div>

@@ -1,10 +1,18 @@
 // import { logIn } from 'Services/auth-service';
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { Helmet } from 'react-helmet';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'store/auth/operation';
+import { logInError } from 'store/auth/selector';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const isError = useSelector(logInError);
+  useEffect(() => {
+    if (isError) {
+      alert('Email address or Password is not correct!');
+    }
+  }, [isError]);
   const handleSubmit = e => {
     e.preventDefault();
     const userLogIn = {
@@ -16,6 +24,9 @@ const LoginPage = () => {
   };
   return (
     <div className="container mt-4 maine_box">
+      <Helmet>
+        <title>LogIn</title>
+      </Helmet>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail2" className="form-label">

@@ -11,6 +11,7 @@ import { useAuth } from 'hooks';
 import { refreshUser } from 'store/auth/operation';
 import { RestrictedRoute } from './RestrictedRoute';
 import { PrivateRoute } from './PrivateRoute';
+// import { ToastContainer } from 'react-toastify';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -23,35 +24,43 @@ export const App = () => {
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />}></Route>
-        <Route
-          path="/register"
-          element={
-            <RestrictedRoute redirectTo="/login" component={<RegisterPage />} />
-          }
-        ></Route>
-        <Route
-          path="/login"
-          element={
-            <RestrictedRoute
-              redirectTo="/contacts"
-              component={<LoginPage />}
-            ></RestrictedRoute>
-          }
-        ></Route>
-        <Route
-          path="/contacts"
-          element={
-            <PrivateRoute
-              redirectTo="/login"
-              component={<Contacts />}
-            ></PrivateRoute>
-          }
-        ></Route>
-        <Route path="*" element={<Navigate to="/" />} />
-      </Route>
-    </Routes>
+    <>
+      {/* <ToastContainer /> */}
+
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />}></Route>
+          <Route
+            path="/register"
+            element={
+              // <RegisterPage />
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<RegisterPage />}
+              />
+            }
+          ></Route>
+          <Route
+            path="/login"
+            element={
+              <RestrictedRoute
+                redirectTo="/contacts"
+                component={<LoginPage />}
+              ></RestrictedRoute>
+            }
+          ></Route>
+          <Route
+            path="/contacts"
+            element={
+              <PrivateRoute
+                redirectTo="/login"
+                component={<Contacts />}
+              ></PrivateRoute>
+            }
+          ></Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
