@@ -14,7 +14,6 @@ const handleRejected = (state, action) => {
 const authSlice = createSlice({
   name: 'auth',
   initialState: initialStateAuth,
-  // reducers: {},
   extraReducers: builder => {
     builder
       //------------------------------------------------------SignIn

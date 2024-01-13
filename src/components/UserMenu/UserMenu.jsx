@@ -1,10 +1,10 @@
-import { useAuth } from 'hooks';
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'store/auth/operation';
+import { selectUser } from 'store/auth/selector';
 
 const UserMenu = () => {
-  const { user } = useAuth();
+  const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
   return (

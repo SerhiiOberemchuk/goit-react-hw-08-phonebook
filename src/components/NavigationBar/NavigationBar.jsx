@@ -1,9 +1,15 @@
+import Loader from 'components/Loader/Loader';
 import UserMenu from 'components/UserMenu/UserMenu';
-import { useAuth } from 'hooks';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { selectisLoggedIn, selectisRefreshing } from 'store/auth/selector';
+import { getIsLoading } from 'store/contacts/selectors';
 
 export const NavigationBar = () => {
-  const { isLoggedIn } = useAuth();
+  const isLoggedIn = useSelector(selectisLoggedIn);
+  const isRefreshing = useSelector(selectisRefreshing);
+
+  const isLoading = useSelector(getIsLoading);
   return (
     <header>
       <nav className="container navbar navbar-expand-lg bg-body-tertiary border-bottom">
@@ -34,6 +40,7 @@ export const NavigationBar = () => {
               )}
             </div>
           </div>
+          {(isRefreshing || isLoading) && <Loader />}
         </div>
       </nav>
     </header>

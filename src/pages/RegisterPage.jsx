@@ -70,8 +70,6 @@ const RegisterPage = () => {
             type="text"
             className="form-control"
             id="InputPassword"
-            // pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{10,}$"
-            // minLength="10"
             required
           />
         </div>
