@@ -8,8 +8,8 @@ const UserMenu = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="navbar-nav">
-      <p className="">Welcome {user.name.toUpperCase()}</p>
+    <div className="d-flex align-items-center">
+      <p className="me-3 mt-auto mb-auto">Welcome {user.name.toUpperCase()}</p>
       <button
         className="btn btn-warning"
         type="button"

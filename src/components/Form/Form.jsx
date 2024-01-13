@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'store/contacts/operation';
 import { getContacts } from 'store/contacts/selectors';
-
-// import swal from 'sweetalert';
+import Swal from 'sweetalert2';
 
 export const FormAddContacts = () => {
   const [name, setName] = useState('');
@@ -36,11 +35,11 @@ export const FormAddContacts = () => {
         obj.name.trim().toLowerCase() === newContact.name.trim().toLowerCase()
     );
     if (isContact) {
-      // swal({
-      //   title: newContact.name,
-      //   text: 'Is already in contacts!',
-      //   icon: 'info',
-      // });
+      Swal.fire({
+        title: newContact.name,
+        text: 'Is already in contacts!',
+        width: '20em',
+      });
       cleanState();
       return;
     }
@@ -78,16 +77,6 @@ export const FormAddContacts = () => {
         />
       </div>
       <button type="submit" className="btn btn-primary">
-        {/* {isLoading ? (
-          <Loader
-            type="spinner-cub"
-            bgColor={'#3367D1'}
-            title={'spinner-cub'}
-            size={20}
-          />
-        ) : (
-          <p className="m-0">Add contact</p>
-        )} */}
         <p className="m-0">Add contact</p>
       </button>
     </form>

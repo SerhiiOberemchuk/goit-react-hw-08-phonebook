@@ -19,13 +19,15 @@ export const NavigationBar = () => {
               <NavLink className="nav-link " aria-current="page" to="/">
                 Home
               </NavLink>
+              {isLoggedIn && (
+                <NavLink className="nav-link" to="/contacts">
+                  Contacts
+                </NavLink>
+              )}
             </div>
             <div className="navbar-nav">
               {isLoggedIn ? (
                 <>
-                  <NavLink className="nav-link" to="/contacts">
-                    Contacts
-                  </NavLink>
                   <UserMenu />
                 </>
               ) : (

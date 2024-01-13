@@ -17,15 +17,17 @@ const Contacts = () => {
 
   return (
     <main>
-      <div className="maine_box">
-        <h1 className="h1 mt-2">Phonebook</h1>
-        <FormAddContacts />
-        <h2 className="h2 mt-3">Contacts</h2>
-        <Filter />
-        <ContactsList />
+      <section className="contacts_list">
+        <div className="container">
+          <h1 className="h1 mt-2">Phonebook</h1>
+          <FormAddContacts />
+          <h2 className="h2 mt-3">Contacts</h2>
+          <Filter />
+          <ContactsList />
 
-        {error && <p className="text-danger mt-3">{error}</p>}
-      </div>
+          {error && <p className="text-danger mt-3">{error}</p>}
+        </div>
+      </section>
     </main>
   );
 };
