@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
-import { HelmetData } from 'react-helmet-async';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { singUp } from 'store/auth/operation';
 import { registerError } from 'store/auth/selector';
-
-const helmetData = new HelmetData({});
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
