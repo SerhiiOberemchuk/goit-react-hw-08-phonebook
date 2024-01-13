@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'store/contacts/operation';
-import { getContacts, getIsLoading } from 'store/contacts/selectors';
-import Loader from 'react-js-loader';
+import { getContacts } from 'store/contacts/selectors';
 
-import swal from 'sweetalert';
+// import swal from 'sweetalert';
 
 export const FormAddContacts = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const items = useSelector(getContacts);
-  const isLoading = useSelector(getIsLoading);
+
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -37,11 +36,11 @@ export const FormAddContacts = () => {
         obj.name.trim().toLowerCase() === newContact.name.trim().toLowerCase()
     );
     if (isContact) {
-      swal({
-        title: newContact.name,
-        text: 'Is already in contacts!',
-        icon: 'info',
-      });
+      // swal({
+      //   title: newContact.name,
+      //   text: 'Is already in contacts!',
+      //   icon: 'info',
+      // });
       cleanState();
       return;
     }

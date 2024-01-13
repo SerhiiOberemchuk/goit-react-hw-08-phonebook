@@ -6,7 +6,6 @@ import { getError } from 'store/contacts/selectors';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'store/contacts/operation';
-import { Helmet } from 'react-helmet';
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -19,9 +18,6 @@ const Contacts = () => {
   return (
     <main>
       <div className="maine_box">
-        <Helmet>
-          <title>Contacts</title>
-        </Helmet>
         <h1 className="h1 mt-2">Phonebook</h1>
         <FormAddContacts />
         <h2 className="h2 mt-3">Contacts</h2>

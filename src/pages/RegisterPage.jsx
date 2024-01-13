@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import { HelmetData } from 'react-helmet-async';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import { singUp } from 'store/auth/operation';
 import { registerError } from 'store/auth/selector';
+
+const helmetData = new HelmetData({});
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
@@ -33,9 +36,6 @@ const RegisterPage = () => {
 
   return (
     <div className="container mt-4 maine_box">
-      <Helmet>
-        <title>Registration</title>
-      </Helmet>
       <form onSubmit={handleSabmit}>
         <div className="mb-3">
           <label htmlFor="Username" className="form-label">

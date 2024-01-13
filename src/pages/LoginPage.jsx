@@ -1,6 +1,5 @@
 // import { logIn } from 'Services/auth-service';
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'store/auth/operation';
 import { logInError } from 'store/auth/selector';
@@ -24,9 +23,6 @@ const LoginPage = () => {
   };
   return (
     <div className="container mt-4 maine_box">
-      <Helmet>
-        <title>LogIn</title>
-      </Helmet>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail2" className="form-label">
