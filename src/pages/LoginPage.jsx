@@ -1,32 +1,37 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { logIn } from 'store/auth/operation';
-import { logInError } from 'store/auth/selector';
 import Swal from 'sweetalert2';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
-  const isError = useSelector(logInError);
-  useEffect(() => {
-    if (isError) {
-      Swal.fire({
-        text: 'Email address or Password is not correct!',
-      });
-    }
-  }, [isError]);
+
   const handleSubmit = e => {
     e.preventDefault();
     const userLogIn = {
       email: e.target.elements.email.value,
       password: e.target.elements.password.value,
     };
-    dispatch(logIn(userLogIn));
+    dispatch(logIn(userLogIn))
+      .unwrap()
+      .then(() => {
+        Swal.fire({
+          text: 'LogIn is successful',
+          timer: 3000,
+          timerProgressBar: true,
+        });
+      })
+      .catch(() =>
+        Swal.fire({
+          text: 'Email address or Password is not correct!',
+        })
+      );
     e.currentTarget.reset();
   };
   return (
     <main>
       <section className="login">
-        <div className="container mt-4 maine_box">
+        <div className="container mt-4 ">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="exampleInputEmail2" className="form-label">

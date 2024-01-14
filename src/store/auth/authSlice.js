@@ -4,8 +4,6 @@ import { logIn, logOut, refreshUser, singUp } from './operation';
 
 const handlePending = state => {
   state.isRefreshing = true;
-  state.registerError = null;
-  state.logInError = null;
 };
 const handleRejected = (state, action) => {
   state.isRefreshing = false;
@@ -25,7 +23,6 @@ const authSlice = createSlice({
       })
       .addCase(singUp.rejected, (state, action) => {
         state.isRefreshing = false;
-        state.registerError = action.payload;
       })
       .addCase(logIn.pending, handlePending)
       .addCase(logIn.fulfilled, (state, action) => {
@@ -35,7 +32,6 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(logIn.rejected, (state, action) => {
-        state.logInError = action.payload;
         state.isRefreshing = false;
       })
       .addCase(logOut.pending, handlePending)
