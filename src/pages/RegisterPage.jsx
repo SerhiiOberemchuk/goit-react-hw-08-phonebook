@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { singUp } from 'store/auth/operation';
 import Swal from 'sweetalert2';
 
 const RegisterPage = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   const dispatch = useDispatch();
 
   const handleSabmit = e => {
     e.preventDefault();
     const newUser = {
-      name: e.target.elements.name.value,
-      email: e.target.elements.email.value,
-      password: e.target.elements.password.value,
+      name,
+      email,
+      password,
     };
 
     dispatch(singUp(newUser))
@@ -34,8 +38,6 @@ const RegisterPage = () => {
           });
         }
       });
-
-    e.currentTarget.reset();
   };
 
   return (
@@ -48,6 +50,8 @@ const RegisterPage = () => {
                 User name
               </label>
               <input
+                onChange={e => setName(e.target.value)}
+                value={name}
                 name="name"
                 type="name"
                 className="form-control"
@@ -60,6 +64,8 @@ const RegisterPage = () => {
                 Email address
               </label>
               <input
+                onChange={e => setEmail(e.target.value)}
+                value={email}
                 name="email"
                 type="email"
                 className="form-control"
@@ -72,8 +78,10 @@ const RegisterPage = () => {
                 Password
               </label>
               <input
+                onChange={e => setPassword(e.target.value)}
+                value={password}
                 name="password"
-                type="text"
+                type="password"
                 className="form-control"
                 id="InputPassword"
                 minLength="7"

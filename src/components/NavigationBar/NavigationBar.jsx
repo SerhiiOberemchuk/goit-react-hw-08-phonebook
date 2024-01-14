@@ -11,7 +11,7 @@ export const NavigationBar = () => {
 
   const isLoading = useSelector(getIsLoading);
   return (
-    <header>
+    <header className="sticky-top">
       <nav className="container navbar navbar-expand-lg bg-body-tertiary border-bottom">
         <div className="container-fluid">
           <div className=" navbar-collapse" id="navbarNavAltMarkup">
